@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brain map harness</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Stand-ins for the Obsidian CSS variables styles.css reads. */
+    :root { --background-primary: #1e1e1e; --background-secondary: #262626; --background-modifier-border: #3f3f3f;
+      --background-modifier-hover: #333; --text-normal: #dadada; --text-muted: #a3a3a3; --text-faint: #777;
+      --text-accent: #a68af9; --font-ui-small: 13px; --font-ui-smaller: 12px; --shadow-s: 0 2px 8px rgba(0,0,0,.4); }
+    button, input { font: inherit; color: inherit; background: #2a2a2a; border: 1px solid #3f3f3f; border-radius: 4px; padding: 3px 6px; box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #1e1e1e; color: #dadada; font: 13px system-ui, sans-serif; }
+    #bar { position: absolute; bottom: 8px; left: 8px; z-index: 2; display: flex; gap: 8px; align-items: center; }
+    #map { position: absolute; inset: 0; }
+  </style>
+</head>
+<body>
+  <div id="bar">
+    <select id="fixture">
+      <option value="../fixtures/local/graph.json">local (real wiki, if dumped)</option>
+      <option value="../fixtures/synthetic-2000.json">synthetic 2000</option>
+    </select>
+    <button id="reset" title="Reset view (Esc)">Reset</button>
+    <span id="status"></span>
+  </div>
+  <div id="map"></div>
+  <script type="module" src="./harness.js"></script>
+</body>
+</html>

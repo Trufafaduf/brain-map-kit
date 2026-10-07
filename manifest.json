@@ -1,0 +1,9 @@
+{
+  "id": "brain-map",
+  "name": "Brain map",
+  "version": "0.4.0",
+  "minAppVersion": "1.5.0",
+  "description": "A zoomable graph of a wiki's folder tree: clusters open into pages as you zoom, and every node has a hover card with a summary and its most relevant links.",
+  "author": "brain-map-kit contributors",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,17 @@
+# Build output and dependencies
+node_modules/
+dist/
+
+# A real wiki's graph and summaries never belong in the kit
+fixtures/local/
+
+# Local settings
+.identifying-denylist.txt
+data.json
+
+# OS
+.DS_Store
+Thumbs.db
+__pycache__/
+dev/harness.js
+diag.json

@@ -1,0 +1,230 @@
+/* Brain map view. Colours come from the theme's graph variables at runtime. */
+/* Obsidian's own .view-content rule sets overflow: auto and wins on order, so
+   a hover card near the edge would toggle a scrollbar and resize the map. */
+.brain-map-view {
+  position: relative;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.brain-map-tip {
+  position: absolute;
+  box-sizing: border-box;
+  max-width: 340px;
+  min-width: 200px;
+  padding: 8px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m, 8px);
+  background: var(--background-secondary);
+  box-shadow: var(--shadow-s);
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+  line-height: 1.4;
+  z-index: 10;
+}
+
+.brain-map-tip-crumbs {
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brain-map-tip-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.brain-map-tip-title {
+  font-weight: var(--font-semibold, 600);
+  min-width: 0;
+}
+
+.brain-map-tip-badge {
+  flex: none;
+  margin-left: auto;
+  padding: 0 6px;
+  border-radius: var(--radius-s, 4px);
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+}
+
+.brain-map-tip-body {
+  color: var(--text-muted);
+}
+
+.brain-map-tip-label {
+  margin: 8px 0 2px;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.brain-map-tip-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 -4px;
+  padding: 1px 4px;
+  border-radius: var(--radius-s, 4px);
+  cursor: pointer;
+}
+
+.brain-map-tip-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.brain-map-tip-row-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brain-map-tip-row-meta {
+  flex: none;
+  margin-left: auto;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+}
+
+.brain-map-tip-counts {
+  margin-top: 8px;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+
+.brain-map-status {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.brain-map-status.is-error {
+  color: var(--text-error);
+  font-size: var(--font-ui-small);
+}
+
+.brain-map-reset {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+}
+
+/* Search box at the top left; the reset button holds the top right. */
+.brain-map-search {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: min(260px, calc(100% - 64px));
+  z-index: 6;
+}
+
+.brain-map-search input {
+  width: 100%;
+  font-size: var(--font-ui-small);
+  background: var(--background-primary);
+}
+
+.brain-map-search-results {
+  margin-top: 4px;
+  padding: 4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m, 8px);
+  background: var(--background-secondary);
+  box-shadow: var(--shadow-s);
+  font-size: var(--font-ui-small);
+}
+
+.brain-map-search-item {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px;
+  border-radius: var(--radius-s, 4px);
+  cursor: pointer;
+  color: var(--text-normal);
+}
+
+.brain-map-search-item.is-selected {
+  background: var(--background-modifier-hover);
+}
+
+.brain-map-search-title b {
+  color: var(--text-accent);
+  font-weight: var(--font-semibold, 600);
+}
+
+.brain-map-search-folder {
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Focus path centred in the band between the search box and the reset button. */
+.brain-map-crumbs {
+  position: absolute;
+  top: 10px;
+  left: 276px;
+  right: 52px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.brain-map-crumbs-path {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 2px 6px;
+  border-radius: var(--radius-m, 8px);
+  background: var(--background-primary);
+  opacity: 0.92;
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.brain-map-crumbs[hidden] {
+  display: none;
+}
+
+.brain-map-crumb {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px 4px;
+  height: auto;
+  background: none;
+  box-shadow: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.brain-map-crumb:hover,
+.brain-map-crumb.is-current {
+  color: var(--text-normal);
+}
+
+.brain-map-crumb-sep {
+  color: var(--text-faint);
+}
